@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 
     function logIn(userInfo) {
-        fetch('https://arcane-retreat-92908.herokuapp.com/users', {
+        fetch('https://localhost:8080/users', {
             method: 'POST',
             body: JSON.stringify(userInfo),
             headers: {

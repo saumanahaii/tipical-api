@@ -1,5 +1,5 @@
 function getCurrentUser(){
-  return fetch('https://arcane-retreat-92908.herokuapp.com/users', {
+  return fetch('https://localhost:8080/users', {
       method: 'get',
       credentials:'include',
       headers: {
@@ -15,7 +15,7 @@ function getCurrentUser(){
 }
 
 function addPost(post) {
-  fetch('https://arcane-retreat-92908.herokuapp.com/posts', {
+  fetch('https://localhost:8080/posts', {
       method: 'POST',
       body: JSON.stringify(post),
       credentials:'include',

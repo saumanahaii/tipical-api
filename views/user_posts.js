@@ -22,7 +22,7 @@ let populateList = function(val){
 let search = function(){
   let username = $("#uname").val();
   let pw = $("#pw").val();
-  fetch('https://arcane-retreat-92908.herokuapp.com/user_posts', {
+  fetch('https://localhost:8080/user_posts', {
       method: 'get',
       headers: {
           'Accept':'application/json',
@@ -64,7 +64,7 @@ $("body").on('click', '.delete_button', (event)=>{
   let username = $("#uname").val();
   let pw = $("#pw").val();
 
-  fetch(`https://arcane-retreat-92908.herokuapp.com/posts/${id}`, {
+  fetch(`https://localhost:8080/posts/${id}`, {
       method: 'delete',
       headers: {
           'Accept':'application/json',
@@ -84,7 +84,7 @@ $("body").on('click', '.edit_button', (event)=>{
   let pw = $("#pw").val();
   let parentContainer = $(event.currentTarget).parent();
   //Do the fetch thing
-  fetch(`https://arcane-retreat-92908.herokuapp.com/find_post/${id}`, {
+  fetch(`https://localhost:8080/find_post/${id}`, {
       method: 'get',
       headers: {
           'Accept':'application/json',

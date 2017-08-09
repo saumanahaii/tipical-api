@@ -3,13 +3,13 @@
 let renderList = function(lat,lon){
   console.log(`lat: ${lat}, lon: ${lon}`);
   if(lat == undefined || lon == undefined){
-    $.get('https://arcane-retreat-92908.herokuapp.com/').then((val)=>{
+    $.get('https://localhost:8080/').then((val)=>{
       console.log("rendering default view");
       populateList(val);
 
     });
   }else{
-    $.get(`https://arcane-retreat-92908.herokuapp.com?lat=${lat}&lon=${lon}`).then((val)=>{
+    $.get(`https://localhost:8080?lat=${lat}&lon=${lon}`).then((val)=>{
       console.log("rendering Secondary view");
       populateList(val);
 
