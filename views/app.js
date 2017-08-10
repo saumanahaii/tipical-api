@@ -35,7 +35,7 @@ $(function ()
 	 $("#search-field").autocomplete({
 		source: function (request, response) {
 		 $.getJSON(
-			"http://gd.geobytes.com/AutoCompleteCity?callback=?&q="+request.term,
+			"https://gd.geobytes.com/AutoCompleteCity?callback=?&q="+request.term,
 			function (data) {
 			 response(data);
 			}
@@ -64,7 +64,7 @@ let getcitydetails = (fqcn) => {
 	cityfqcn = fqcn;
 	if (cityfqcn) {
     $.getJSON(
-      "http://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn,
+      "https://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn,
          function (data) {
             console.log(data);
             cityLocation = data;
