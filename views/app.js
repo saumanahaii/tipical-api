@@ -64,7 +64,7 @@ let getcitydetails = (fqcn) => {
 	cityfqcn = fqcn;
 	if (cityfqcn) {
     $.getJSON(
-      "https://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn,
+      "http://gd.geobytes.com/GetCityDetails?callback=?&fqcn="+cityfqcn,
          function (data) {
             console.log(data);
             cityLocation = data;
@@ -78,7 +78,7 @@ let flushMarkers = () => {
 }
 
 let getNearbyTips = (lat, lon) => {
-  return fetch(`https://tipical.herokuapp.com?lat=${lat}&lon=${lon}`).then(tips=>{
+  return fetch(`http://tipical.herokuapp.com?lat=${lat}&lon=${lon}`).then(tips=>{
     return tips.json();
   })
 }
