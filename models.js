@@ -5,7 +5,7 @@ let random_token = require("random-token");
 let Schema = mongoose.Schema;
 
 let TipsSchema = Schema({
-  username: {type: String, default: 'Bob Saget'},
+  username: {type: String, default: 'Anonymous'},
   body: {type: String, required: true},
   date: {type: Date, default: Date.now()},
   location:{ type: [Number], index: '2dsphere',},
@@ -33,34 +33,6 @@ let UserSchema = Schema({
   }
 
 });
-
-UserSchema.methods.validatePassword = function(password) {
-  return bcrypt
-    .compare(password, this.password)
-    .then(isValid => isValid);
-};
-
-UserSchema.statics.hashPassword = function(password) {
-  return bcrypt
-    .hash(password, 10)
-    .then(hash => hash);
-};
-
-UserSchema.methods.makeToken = function(token) {
-  return random_token(4);
-};
-
-UserSchema.methods.validateToken = function(token) {
-  return bcrypt
-    .compare(token, this.token)
-    .then(isValid => isValid);
-};
-
-UserSchema.statics.hashToken = function(token) {
-  return bcrypt
-    .hash(token, 10)
-    .then(hash => hash);
-};
 
 let Tips = mongoose.model('Tip', TipsSchema);
 let User = mongoose.model('User', UserSchema);

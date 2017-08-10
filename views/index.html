@@ -1,20 +1,30 @@
-<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/flick/jquery-ui.css" />
-<link rel="stylesheet" href="./semantic.min.css">
-<link rel="stylesheet" type="text/css" href="css.css">
-<div class= "ui menu white">
-<a href="/app"><h3 id="logo" class=" ui header item">Tipical</h3></a>
-<a class="ui header floated left item" href="new_post.html">New Post</a>
-<a class="ui header item" href="user_posts.html">User Posts</a>
-<a class="ui header item floated right" href="new_user.html">Create Account</a>
-</div>
-<div class = 'ui one column container'>
-  <form class="ui huge form search">
-    <input class="" id="search-field" type="text" placeholder="Enter your city...">
-    <div class = "ui button white inverted fluid " id="search-button">Search</div>
-  </form>
-</div>
+<body>
+  <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/flick/jquery-ui.css" />
+  <link rel="stylesheet" href="./semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="css.css">
+  <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css">
 
-<div id="posts" class="ui one column container"></div>
+  <div id="map" class="map"></div>
+  <div class="overlay">
+    <div class= "ui menu inverted">
+      <p class="ui item"></p>
+      <a href="/app"><h3 id="logo" class=" ui header item">Tipical</h3></a>
+      <a class="ui header floated left item" href="new_post.html">New Post</a>
+      <form class="ui huge form search">
+        <div class="inline field">
+          <input class="inverted fluid" id="search-field" type="text" placeholder="Enter your city...">
+
+
+          <button class = "ui button white inverted" id="search-button">Search</button>
+        </div>
+      </form>
+    </div>
+
+    </div>
+
+    <div id="posts" class="ui one column container"></div>
+  </div>
+</body>
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -26,4 +36,5 @@
   crossorigin="anonymous"></script>
 	<script src="https://use.fontawesome.com/e5da894dce.js"></script>
 <script src="./semantic.min.js"></script>
+<script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
 <script src="app.js"></script>

@@ -1,7 +1,6 @@
 function getCurrentUser(){
-  return fetch('https://localhost:8080/users', {
+  return fetch('http://localhost:8080/users', {
       method: 'get',
-      credentials:'include',
       headers: {
           'Accept':'application/json',
           'Content-Type':'application/json',
@@ -15,14 +14,12 @@ function getCurrentUser(){
 }
 
 function addPost(post) {
-  fetch('https://localhost:8080/posts', {
+  fetch('http://localhost:8080/posts', {
       method: 'POST',
       body: JSON.stringify(post),
-      credentials:'include',
       headers: {
           'Accept':'application/json',
           'Content-Type':'application/json',
-          // 'Authorization' : `Basic ${btoa(username + ":" + pw)}`
       }
   })
   .then(newPost => {
@@ -34,18 +31,12 @@ function addPost(post) {
 $(document).ready(function() {
     $('#sub').on('click',function(event){
         event.preventDefault();
-        getCurrentUser().then((val)=>{
-
           const post = {
               'body' : `${$("#postData").val()}`,
               'location': [parseFloat($("#lat").val()),parseFloat($("#lon").val())],
-              'username' : `${val}`
           };
           console.log('logging the post');
           console.log(post);
           addPost(post);
-
-        });
-
     });
 });

@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 function addUser(user) {
     let usercredentials = user;
-    fetch('https://localhost:8080/users', {
+    fetch('http://localhost:8080/users', {
         method: 'POST',
         body: JSON.stringify(user),
         headers: {
@@ -21,7 +21,7 @@ function addUser(user) {
 }
 
 function logIn(userInfo) {
-    fetch('https://localhost:8080/users', {
+    fetch('http://localhost:8080/users', {
         method: 'POST',
         body: JSON.stringify(userInfo),
         headers: {

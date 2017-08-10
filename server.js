@@ -8,8 +8,7 @@ const app = express();
 let {Tips, User} = require('./models');
 
 app.use(cors());
-//REMOVE
-app.use(bodyParser.json());
+
 app.use('/app',express.static('views'));
 
 app.use(function(req, res, next) {
