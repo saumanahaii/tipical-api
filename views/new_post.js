@@ -1,5 +1,5 @@
 function getCurrentUser(){
-  return fetch('http://localhost:8080/users', {
+  return fetch('https://tipical.herokuapp.com/users', {
       method: 'get',
       headers: {
           'Accept':'application/json',
@@ -14,7 +14,7 @@ function getCurrentUser(){
 }
 
 function addPost(post) {
-  fetch('http://localhost:8080/posts', {
+  fetch('https://tipical.herokuapp.com/posts', {
       method: 'POST',
       body: JSON.stringify(post),
       headers: {

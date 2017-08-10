@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 
     function logIn(userInfo) {
-        fetch('http://localhost:8080/users', {
+        fetch('https://tipical.herokuapp.com/users', {
             method: 'POST',
             body: JSON.stringify(userInfo),
             headers: {

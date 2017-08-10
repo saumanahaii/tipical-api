@@ -22,7 +22,7 @@ let populateList = function(val){
 let search = function(){
   let username = $("#uname").val();
   let pw = $("#pw").val();
-  fetch('http://localhost:8080/user_posts', {
+  fetch('https://tipical.herokuapp.com/user_posts', {
       method: 'get',
       headers: {
           'Accept':'application/json',
@@ -64,7 +64,7 @@ $("body").on('click', '.delete_button', (event)=>{
   let username = $("#uname").val();
   let pw = $("#pw").val();
 
-  fetch(`http://localhost:8080/posts/${id}`, {
+  fetch(`https://tipical.herokuapp.com/posts/${id}`, {
       method: 'delete',
       headers: {
           'Accept':'application/json',
@@ -84,7 +84,7 @@ $("body").on('click', '.edit_button', (event)=>{
   let pw = $("#pw").val();
   let parentContainer = $(event.currentTarget).parent();
   //Do the fetch thing
-  fetch(`http://localhost:8080/find_post/${id}`, {
+  fetch(`https://tipical.herokuapp.com/find_post/${id}`, {
       method: 'get',
       headers: {
           'Accept':'application/json',
@@ -122,7 +122,7 @@ $("body").on('click', '.edit_button', (event)=>{
 
       console.log(id);
       event.preventDefault();
-      fetch(`http://localhost:8080/posts/${id}`, {
+      fetch(`https://tipical.herokuapp.com/posts/${id}`, {
           method: 'put',
           body: JSON.stringify(editedPost),
           headers: {

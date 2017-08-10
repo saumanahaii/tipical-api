@@ -2,6 +2,8 @@ let cityLocation = {
   geobyteslongitude: -73.935242,
   geobyteslatitude: 40.730610,
 };
+let clickedLocation;
+let clickedMarker;
 let vectorSource = new ol.source.Vector(),vectorLayer = new ol.layer.Vector({source: vectorSource})
 let map = new ol.Map({
 target: 'map',
@@ -71,8 +73,12 @@ let getcitydetails = (fqcn) => {
 	}
 }
 
+let flushMarkers = () => {
+
+}
+
 let getNearbyTips = (lat, lon) => {
-  return fetch(`http://localhost:8080?lat=${lat}&lon=${lon}`).then(tips=>{
+  return fetch(`https://tipical.herokuapp.com?lat=${lat}&lon=${lon}`).then(tips=>{
     return tips.json();
   })
 }
@@ -80,12 +86,12 @@ let getNearbyTips = (lat, lon) => {
 let generateMarkers = function(lat,lon){
   console.log(`lat: ${lat}, lon: ${lon}`);
   getNearbyTips(lat, lon).then(tips=>{
-
+    //vectorSource.clear();
     tips.forEach(tip=>{
       console.log("making a marker");
       console.log(tip);
 
-      let coord = ol.proj.transform([lon,lat], 'EPSG:4326','EPSG:3857');
+      let coord = ol.proj.transform([tip.location[1],tip.location[0]], 'EPSG:4326','EPSG:3857');
       console.log(coord)
       // coord = map.getPixelFromCoordinate([cityLocation.geobyteslongitude,
       // cityLocation.geobyteslatitude])
@@ -114,7 +120,7 @@ let generateMarkers = function(lat,lon){
 
       feature.setStyle(iconStyle);
       vectorSource.addFeature(feature);
-      console.log(feature)
+      //console.log(feature)
 
       //TEMP COMMENTED OUT
       // var feature = new ol.Feature(
@@ -129,31 +135,36 @@ let generateMarkers = function(lat,lon){
 
     })
   });
-
-
 };
 
+function addPost(post) {
+  fetch('https://tipical.herokuapp.com/posts', {
+      method: 'POST',
+      body: JSON.stringify(post),
+      headers: {
+          'Accept':'application/json',
+          'Content-Type':'application/json',
+      }
+  })
+  .then(newPost => {
+      console.log('this is the newPost: ');
+      console.dir(newPost);
+      //render the new markers
+      generateMarkers(cityLocation.geobyteslatitude,cityLocation.geobyteslongitude);
+  });
+}
 
+$('#tip-submit-button').on('click', (event)=>{
+  event.preventDefault();
+  const post = {
+      'body' : `${$("#tip-field").val()}`,
+      'location': [clickedLocation[1],clickedLocation[0]]
+  };
+  console.log('logging the post');
+  console.log(post);
+  addPost(post);
 
-//renderList();
-
-// let populateList = function(val){
-//   let html = '';
-//   val.forEach((val)=>{
-//     html+=`
-//       <div class="ui message grey column">
-//         <div class="ui menu">
-//           <p class="header item">${val.points.length}</p>
-//           <p class = "header item">${val.location}</p>
-//           <p class="header item floated right">${val.date}</p>
-//         </div>
-//         <div><p>${val.body}</p></div>
-//       </div>
-//
-//     `;
-//   });
-//   $('#posts').html(html);
-// };
+})
 
 $('#search-button').on('click', (event)=>{
   event.preventDefault();
@@ -170,7 +181,34 @@ $('#search-button').on('click', (event)=>{
 });
 
 map.on('click', function(evt){
-  console.log(evt.coordinate);
+  //now set the location
+
+  let iconStyle = new ol.style.Style({
+      image: new ol.style.Icon({
+          anchor: [0.5, 46],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'pixels',
+          opacity: 0.75,
+          src: '//openlayers.org/en/v3.8.2/examples/data/icon.png'
+      })
+    });
+    if(clickedMarker){
+      vectorLayer.getSource().removeFeature(clickedMarker);
+    }
+
+    clickedMarker = new ol.Feature(
+      new ol.geom.Point(evt.coordinate)
+    );
+
+    //THIS IS HOW YOU CAN GET COORDINATES FROM A FEATURE
+    clickedLocation = clickedMarker.getGeometry().getCoordinates();
+    clickedLocation = ol.proj.transform(clickedLocation, 'EPSG:3857', 'EPSG:4326');
+    console.log(clickedLocation)
+
+
+  clickedMarker.setStyle(iconStyle);
+  vectorSource.addFeature(clickedMarker);
+
 });
 
 generateMarkers(cityLocation.geobyteslatitude,cityLocation.geobyteslongitude);

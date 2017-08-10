@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 function addUser(user) {
     let usercredentials = user;
-    fetch('http://localhost:8080/users', {
+    fetch('https://tipical.herokuapp.com/users', {
         method: 'POST',
         body: JSON.stringify(user),
         headers: {
@@ -21,7 +21,7 @@ function addUser(user) {
 }
 
 function logIn(userInfo) {
-    fetch('http://localhost:8080/users', {
+    fetch('https://tipical.herokuapp.com/users', {
         method: 'POST',
         body: JSON.stringify(userInfo),
         headers: {
