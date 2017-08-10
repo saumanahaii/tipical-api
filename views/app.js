@@ -35,7 +35,7 @@ $(function ()
 	 $("#search-field").autocomplete({
 		source: function (request, response) {
 		 $.getJSON(
-			"https://gd.geobytes.com/AutoCompleteCity?callback=?&q="+request.term,
+			"http://gd.geobytes.com/AutoCompleteCity?callback=?&q="+request.term,
 			function (data) {
 			 response(data);
 			}
@@ -78,7 +78,7 @@ let flushMarkers = () => {
 }
 
 let getNearbyTips = (lat, lon) => {
-  return fetch(`http://tipical.herokuapp.com?lat=${lat}&lon=${lon}`).then(tips=>{
+  return fetch(`https://tipical.herokuapp.com?lat=${lat}&lon=${lon}`).then(tips=>{
     return tips.json();
   })
 }
