@@ -1,7 +1,7 @@
 # tipical-api
 
 ### What is it?
-Tipical is a simple tips app that makes use of Express, OpenLayers and MongoDB.  You can see it delpoyed [here](https://tipical.herokuapp.com/)!
+Tipical is a simple tips app built on Express, OpenLayers and MongoDB.  You can see it delpoyed [here](https://tipical.herokuapp.com/)!
 ### How do I use it?
 Tap to place a marker on the screen, then type in the tip above.  Use the search field in the upper right to find your city and load related tips.
 ###  Who made it?
