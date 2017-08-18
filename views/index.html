@@ -3,19 +3,24 @@
   <link rel="stylesheet" href="./semantic.min.css">
   <link rel="stylesheet" type="text/css" href="css.css">
   <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css">
-
+  <div class="modal hidden">
+    <div class=centeredOverlay>
+      <h1>This is Tipical...</h1>
+      <h3>Tipical is a simple anonymous tips app.  Search for your city using the far-right text box.  If someone has left a tip, it will show up!</h3>
+        <h2>Click on the map to drop a pin, then give it a tip using upper left text box.</h2>
+      <p>Tipical was created as a learning exercise early in the Thinkful coding bootcamp for Node, Mongo/Mongoose, and OpenLayers.  It was made by <a href="http://www.zachwilliams.xyz">Zachary Williams</a> and Thien Pham.</p>
+    </div>
+  </div>
   <div id="map" class="map"></div>
   <div class="overlay">
     <div class= "ui menu inverted">
-      <p class="ui item"></p>
+      <p class="ui header item"></p>
       <a href="/app"><h3 id="logo" class=" ui header item">Tipical</h3></a>
-      <a class="ui header floated left item" href="new_post.html">New Post</a>
+      <a id="about" class="ui header floated left item">What is Tipical?</a>
       <form class="ui huge form search">
         <div class="inline field">
-          <input class="inverted fluid" id="tip-field" type="text" placeholder="Enter your city...">
-
-
-          <button class = "ui button white inverted" id="tip-submit-button">add a tip at active location</button>
+          <input class="inverted fluid" id="tip-field" type="text" placeholder="Type a Tip Here!">
+          <button class = "ui button white inverted" id="tip-submit-button">add tip at active location</button>
         </div>
       </form>
       <form class="ui huge form search">

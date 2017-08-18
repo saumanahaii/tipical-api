@@ -13,16 +13,19 @@ target: 'map',
     }),
     vectorLayer
   ],
-  overlay: new ol.Overlay({
-          element: document.getElementById('overlay'),
-          positioning: 'bottom-center'
-        }),
   view: new ol.View({
     center: ol.proj.fromLonLat([cityLocation.geobyteslongitude, cityLocation.geobyteslatitude]),
     zoom: 10
   })
 });
 
+
+$("#about").on("click", ()=>{
+  $('.modal').toggleClass("hidden");
+})
+$(".modal").on("click", ()=>{
+  $('.modal').toggleClass("hidden");
+})
 
 function CenterMap(long, lat) {
     console.log("Long: " + long + " Lat: " + lat);
@@ -122,7 +125,7 @@ let generateMarkers = function(lat,lon){
       vectorSource.addFeature(feature);
       //console.log(feature)
 
-      //TEMP COMMENTED OUT
+
       // var feature = new ol.Feature(
       //     new ol.geom.Point(evt.coordinate)
       // );
